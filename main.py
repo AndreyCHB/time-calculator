@@ -39,7 +39,7 @@ async def calc_item(data: ItemCalcRequest):
     if work_months_needed >= 1:
         time_str = f"{work_months_needed} рабочих месяцев"
     elif work_days_needed >= 1:
-        time_str = f"{work_days_needed} полных рабочих дней"
+        time_str = f"{work_days_needed} рабочих дней"
     else:
         time_str = f"{hours_needed} часов"
 
