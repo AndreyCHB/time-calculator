@@ -129,13 +129,20 @@
 
     <script>
         async function calcItem() {
+            const wageValue = parseFloat(document.getElementById('wage1').value);
+
+            if (!wageValue || wageValue <= 0) {
+                alert("Пожалуйста, введите ваш реальный доход (больше нуля)!");
+                return;
+            }
+
             const btn = document.getElementById('btnItem');
             btn.innerHTML = '<span class="spinner-border spinner-border-sm"></span> Считаем...';
 
             const data = {
                 item_name: document.getElementById('itemName').value || "Неизвестно",
                 price: parseFloat(document.getElementById('itemPrice').value) || 0,
-                hourly_wage: parseFloat(document.getElementById('wage1').value) || 1
+                hourly_wage: wageValue
             };
 
             const response = await fetch('/api/calc_item', {
@@ -152,12 +159,19 @@
         }
 
         async function calcWaste() {
+            const wageValue = parseFloat(document.getElementById('wage2').value);
+
+            if (!wageValue || wageValue <= 0) {
+                alert("Пожалуйста, введите ваш реальный доход (больше нуля)!");
+                return;
+            }
+
             const btn = document.getElementById('btnWaste');
             btn.innerHTML = '<span class="spinner-border spinner-border-sm"></span> Анализируем...';
 
             const data = {
                 hours_per_day: parseFloat(document.getElementById('hoursPhone').value) || 0,
-                hourly_wage: parseFloat(document.getElementById('wage2').value) || 0
+                hourly_wage: wageValue
             };
 
             const response = await fetch('/api/calc_waste', {
